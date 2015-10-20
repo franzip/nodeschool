@@ -10,5 +10,5 @@ http.get(url, function(res) {
 
     res.on("error", function(chunk) {
         console.error(chunk);
-    })
+    });
 });
