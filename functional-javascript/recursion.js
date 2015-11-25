@@ -1,10 +1,22 @@
-function reduce(arr, fn, initial) {
-    return (function iterate(arr, idx, fn, initial) {
-        if (idx === arr.length - 1) {
-            return fn(initial, arr[idx], idx, arr);
+function getDependencies(tree) {
+  var accumulator = [];
+
+  function iterate(tree, acc) {
+    var depObj = tree && tree.dependencies;
+    if (depObj) {
+      var deps = Object.keys(depObj);
+      deps.forEach(function(dep) {
+        var key = dep + "@" + depObj[dep].version;
+        if (acc.indexOf(key) === -1) {
+          acc.push(key);
         }
-        return iterate(arr, idx + 1, fn, fn(initial, arr[idx], idx, arr));
-    })(arr, 0, fn, initial);
+        iterate(depObj[dep], acc);
+      });
+    }
+    return acc.sort();
+  }
+
+  return iterate(tree, accumulator);
 }
 
-module.exports = reduce;
+module.exports = getDependencies;
