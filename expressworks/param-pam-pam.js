@@ -5,9 +5,9 @@ var express = require('express'),
 
 app.param('id', function(req, res, next, id) {
   res.hash = crypto
-             .createHash('sha1')
-             .update(new Date().toDateString() + id)
-             .digest('hex');
+                .createHash('sha1')
+                .update(new Date().toDateString() + id)
+                .digest('hex');
   next();
 });
 

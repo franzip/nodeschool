@@ -1,7 +1,8 @@
 var fs   = require("fs")
-    path = require("path");
+    path = require("path"),
+    dir  = process.argv[2];
 
-fs.readdir(process.argv[2], function(err, files) {
+fs.readdir(dir, function(err, files) {
     var res = files.filter(function(file) {
         return path.extname(file).slice(1) === process.argv[3];
     });
