@@ -9,4 +9,6 @@ selected.pipe(through(function write(buffer, encoding, next) {
     next();
 })).pipe(selected);
 
-process.stdin.pipe(tr).pipe(process.stdout);
+process.stdin
+    .pipe(tr)
+    .pipe(process.stdout);

@@ -12,6 +12,6 @@ var stream = through(function write(buffer, encoding, next) {
 });
 
 process.stdin
-       .pipe(split())
-       .pipe(stream)
-       .pipe(process.stdout);
+    .pipe(split())
+    .pipe(stream)
+    .pipe(process.stdout);
